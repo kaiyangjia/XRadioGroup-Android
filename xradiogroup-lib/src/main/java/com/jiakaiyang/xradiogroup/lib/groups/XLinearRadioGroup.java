@@ -1,4 +1,4 @@
-package com.jiakaiyang.xradiogroup.lib;
+package com.jiakaiyang.xradiogroup.lib.groups;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.LinkedList;
+import com.jiakaiyang.xradiogroup.lib.XRadioGroup;
+import com.jiakaiyang.xradiogroup.lib.XRadioGroupImpl;
+import com.jiakaiyang.xradiogroup.lib.XRadioItem;
+
 import java.util.List;
 
 /**
@@ -52,6 +55,11 @@ public class XLinearRadioGroup extends LinearLayout implements XRadioGroup {
         return XLinearRadioGroup.class.getName();
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        onViewFinishInflate();
+    }
 
     /* public methods */
 
@@ -88,6 +96,11 @@ public class XLinearRadioGroup extends LinearLayout implements XRadioGroup {
 
     public void setOnCheckedChangeListener(XRadioGroup.OnCheckedChangeListener mOnCheckedChangeListener) {
         xRadioGroup.setOnCheckedChangeListener(mOnCheckedChangeListener);
+    }
+
+    @Override
+    public void onViewFinishInflate() {
+        xRadioGroup.onViewFinishInflate();
     }
 
     /**

@@ -2,6 +2,9 @@ package com.jiakaiyang.xradiogroup.lib;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewStub;
 
 import java.util.List;
 
@@ -39,6 +42,13 @@ public interface XRadioGroup {
 
     public void setOnCheckedChangeListener(OnCheckedChangeListener mOnCheckedChangeListener);
 
+
+    /**
+     * you should call this method in your XRadioGroup's onFinishInflate()
+     */
+    public void onViewFinishInflate();
+
+
     /**
      * get current fixed items' id.
      *
@@ -47,6 +57,11 @@ public interface XRadioGroup {
     public
     @Nullable
     List<Integer> getFixedItemsId();
+
+
+    /**
+     */
+    public void setOnHierarchyChangeListener(ViewGroup.OnHierarchyChangeListener listener);
 
     /* the public interface */
 

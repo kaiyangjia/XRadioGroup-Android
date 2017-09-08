@@ -5,6 +5,8 @@ import android.widget.Checkable;
 /**
  * Created by jia on 2017/9/5.
  * the base interface for the item in XRadioGroup
+ * <p>
+ * Your implement of this interface should be the child Class of View
  */
 
 public interface XRadioItem extends Checkable {
@@ -25,4 +27,22 @@ public interface XRadioItem extends Checkable {
      * @return
      */
     public boolean isFixed();
+
+
+    /**
+     * just like View.getId().
+     *
+     * @return
+     */
+    public int getId();
+
+
+    public void setOnCheckedChangeListener(XRadioItem.OnCheckedChangeListener listener);
+
+
+    public static interface OnCheckedChangeListener {
+        /**
+         */
+        void onCheckedChanged(XRadioItem xRadioItem, boolean isChecked);
+    }
 }

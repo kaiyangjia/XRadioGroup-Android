@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jiakaiyang.xradiogroup.lib.utils.ViewUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,12 +21,36 @@ public class XRadioGroupImpl implements XRadioGroup {
 
     private OnCheckedChangeListener mOnCheckedChangeListener;
 
+    private PassThroughHierarchyChangeListener hierarchyChangeListener;
+    private ItemCheckChangeListener childCheckChangeListener;
+
     // the real ViewGroup implement of the XRadioGroup
     private ViewGroup mViewGroup;
 
+    private boolean mProtectFromCheckedChange = false;
+
     public XRadioGroupImpl(ViewGroup mViewGroup) {
         this.mViewGroup = mViewGroup;
+
+        init();
     }
+
+    private void init() {
+        hierarchyChangeListener = new PassThroughHierarchyChangeListener();
+        childCheckChangeListener = new ItemCheckChangeListener();
+    }
+
+    //
+    public void onViewFinishInflate() {
+        // checks the appropriate radio button as requested in the XML file
+        if (mCheckedId != -1) {
+            mProtectFromCheckedChange = true;
+            setCheckedStateForView(mCheckedId, true);
+            mProtectFromCheckedChange = false;
+            setCheckedId(mCheckedId);
+        }
+    }
+
 
     /* public methods */
 
@@ -117,6 +143,11 @@ public class XRadioGroupImpl implements XRadioGroup {
         return fixedItems;
     }
 
+    @Override
+    public void setOnHierarchyChangeListener(ViewGroup.OnHierarchyChangeListener listener) {
+        this.hierarchyChangeListener.mOnHierarchyChangeListener = listener;
+    }
+
     /* private methods */
     private void setCheckedId(@IdRes int id) {
         mCheckedId = id;
@@ -129,6 +160,67 @@ public class XRadioGroupImpl implements XRadioGroup {
         View checkedView = mViewGroup.findViewById(viewId);
         if (checkedView != null && checkedView instanceof XRadioItem) {
             ((XRadioItem) checkedView).setChecked(checked);
+        }
+    }
+
+
+    private class ItemCheckChangeListener implements XRadioItem.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(XRadioItem xRadioItem, boolean isChecked) {
+            // prevents from infinite recursion
+            if (mProtectFromCheckedChange) {
+                return;
+            }
+
+            mProtectFromCheckedChange = true;
+            if (mCheckedId != -1) {
+                setCheckedStateForView(mCheckedId, false);
+            }
+            mProtectFromCheckedChange = false;
+
+            int id = xRadioItem.getId();
+            setCheckedId(id);
+        }
+    }
+
+    /**
+     * brow form Android SDK
+     */
+    private class PassThroughHierarchyChangeListener implements
+            ViewGroup.OnHierarchyChangeListener {
+        private ViewGroup.OnHierarchyChangeListener mOnHierarchyChangeListener;
+
+        /**
+         * {@inheritDoc}
+         */
+        public void onChildViewAdded(View parent, View child) {
+            if (parent == mViewGroup && child instanceof XRadioItem) {
+                int id = child.getId();
+                // generates an id if it's missing
+                if (id == View.NO_ID) {
+                    id = ViewUtils.generateViewId();
+                    child.setId(id);
+                }
+                ((XRadioItem) child).setOnCheckedChangeListener(childCheckChangeListener);
+            }
+
+            if (mOnHierarchyChangeListener != null) {
+                mOnHierarchyChangeListener.onChildViewAdded(parent, child);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public void onChildViewRemoved(View parent, View child) {
+            if (parent == mViewGroup && child instanceof XRadioItem) {
+                ((XRadioItem) child).setOnCheckedChangeListener(null);
+            }
+
+            if (mOnHierarchyChangeListener != null) {
+                mOnHierarchyChangeListener.onChildViewRemoved(parent, child);
+            }
         }
     }
 }
