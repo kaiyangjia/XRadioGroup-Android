@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioGroup;
-import com.jiakaiyang.xradiogroup.lib.XRadioGroupImpl;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
 
 import java.util.List;

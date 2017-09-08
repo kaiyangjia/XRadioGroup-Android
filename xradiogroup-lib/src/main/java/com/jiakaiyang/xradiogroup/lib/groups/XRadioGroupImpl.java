@@ -1,10 +1,12 @@
-package com.jiakaiyang.xradiogroup.lib;
+package com.jiakaiyang.xradiogroup.lib.groups;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jiakaiyang.xradiogroup.lib.XRadioGroup;
+import com.jiakaiyang.xradiogroup.lib.XRadioItem;
 import com.jiakaiyang.xradiogroup.lib.utils.ViewUtils;
 
 import java.util.LinkedList;

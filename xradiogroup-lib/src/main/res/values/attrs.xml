@@ -5,4 +5,7 @@
         <attr name="fixed" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="XRadioItemStates">
+        <attr name="state_fixed" format="boolean" />
+    </declare-styleable>
 </resources>
