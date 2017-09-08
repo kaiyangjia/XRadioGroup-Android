@@ -74,6 +74,10 @@ public abstract class XRadioItemImpl implements XRadioItem {
     public void setChecked(boolean checked) {
         this.checked = checked;
         mView.refreshDrawableState();
+
+        if (onCheckedChangeListener != null) {
+            onCheckedChangeListener.onCheckedChanged(this, checked);
+        }
     }
 
     @Override

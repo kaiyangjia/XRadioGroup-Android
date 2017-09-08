@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioGroup;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
+import com.jiakaiyang.xradiogroup.lib.utils.LogUtils;
 import com.jiakaiyang.xradiogroup.lib.utils.ViewUtils;
 
 import java.util.LinkedList;
@@ -18,6 +19,8 @@ import java.util.List;
  */
 
 public class XRadioGroupImpl implements XRadioGroup {
+    private static final String TAG = "XRadioGroupImpl";
+
     // current checkedId
     private int mCheckedId = -1;
 
@@ -29,7 +32,8 @@ public class XRadioGroupImpl implements XRadioGroup {
     // the real ViewGroup implement of the XRadioGroup
     private ViewGroup mViewGroup;
 
-    private boolean mProtectFromCheckedChange = false;
+    // now this is no need yet
+//    private boolean mProtectFromCheckedChange = false;
 
     public XRadioGroupImpl(ViewGroup mViewGroup) {
         this.mViewGroup = mViewGroup;
@@ -40,15 +44,15 @@ public class XRadioGroupImpl implements XRadioGroup {
     private void init() {
         hierarchyChangeListener = new PassThroughHierarchyChangeListener();
         childCheckChangeListener = new ItemCheckChangeListener();
+
+        mViewGroup.setOnHierarchyChangeListener(hierarchyChangeListener);
     }
 
     //
     public void onViewFinishInflate() {
         // checks the appropriate radio button as requested in the XML file
         if (mCheckedId != -1) {
-            mProtectFromCheckedChange = true;
             setCheckedStateForView(mCheckedId, true);
-            mProtectFromCheckedChange = false;
             setCheckedId(mCheckedId);
         }
     }
@@ -170,19 +174,31 @@ public class XRadioGroupImpl implements XRadioGroup {
 
         @Override
         public void onCheckedChanged(XRadioItem xRadioItem, boolean isChecked) {
-            // prevents from infinite recursion
-            if (mProtectFromCheckedChange) {
-                return;
-            }
-
-            mProtectFromCheckedChange = true;
-            if (mCheckedId != -1) {
-                setCheckedStateForView(mCheckedId, false);
-            }
-            mProtectFromCheckedChange = false;
-
             int id = xRadioItem.getId();
-            setCheckedId(id);
+            LogUtils.d(TAG, "ItemCheckChangeListener onCheckedChanged: id: " + id + ", isChecked: " + isChecked);
+
+/*            if (mCheckedId != -1) {
+                setCheckedStateForView(mCheckedId, false);
+            }*/
+            if (isChecked
+                    && mCheckedId != id) {
+                int count = mViewGroup.getChildCount();
+
+                for (int i = 0; i < count; i++) {
+                    View childView = mViewGroup.getChildAt(i);
+                    if (!(childView instanceof XRadioItem)) {
+                        continue;
+                    }
+                    XRadioItem child = (XRadioItem) childView;
+                    if (child.getId() == id) {
+                        continue;
+                    }
+
+                    child.setChecked(false);
+                }
+
+                setCheckedId(id);
+            }
         }
     }
 

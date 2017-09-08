@@ -110,8 +110,6 @@ public class XLinearRadioItem extends LinearLayout implements XRadioItem {
 
     @Override
     public boolean isChecked() {
-        LogUtils.d(TAG, "isChecked: ");
-
         // this method maybe called before constructor, this mean xRadioItem maybe null.
         if (xRadioItem == null) {
             return false;

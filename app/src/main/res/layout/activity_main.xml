@@ -24,21 +24,75 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher" />
 
-        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="John Lennon"
+                android:textColor="@android:color/white" />
 
+        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
 
         <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_item"
+            android:clickable="true"
             android:orientation="horizontal">
 
-        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Paul McCartney"
+                android:textColor="@android:color/white" />
+
+        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
 
         <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_item"
+            android:clickable="true"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="George Harrison"
+                android:textColor="@android:color/white" />
+
+        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
+
+        <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_item"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Ringo Starr"
+                android:textColor="@android:color/white" />
 
         </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
 
