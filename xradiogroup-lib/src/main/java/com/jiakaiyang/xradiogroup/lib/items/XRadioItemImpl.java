@@ -1,8 +1,14 @@
 package com.jiakaiyang.xradiogroup.lib.items;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.SoundEffectConstants;
 import android.view.View;
 
+import com.jiakaiyang.xradiogroup.lib.R;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
 
 /**
@@ -20,7 +26,16 @@ public abstract class XRadioItemImpl implements XRadioItem {
     private XRadioItem.OnCheckedChangeListener onCheckedChangeListener;
 
 
-    public XRadioItemImpl(View mView) {
+    public static XRadioItemImpl newInstance(final View view) {
+        return new XRadioItemImpl(view) {
+            @Override
+            public int getId() {
+                return view.getId();
+            }
+        };
+    }
+
+    private XRadioItemImpl(View mView) {
         this.mView = mView;
     }
 
@@ -53,6 +68,16 @@ public abstract class XRadioItemImpl implements XRadioItem {
         }
 
         return 0;
+    }
+
+
+    public void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.XLinearRadioItem, defStyleAttr, 0);
+        setFixed(a.getBoolean(R.styleable.XLinearRadioItem_fixed, false));
+        setChecked(a.getBoolean(R.styleable.XLinearRadioItem_checked, false));
+
+        a.recycle();
     }
 
     @Override

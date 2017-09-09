@@ -1,49 +1,41 @@
 package com.jiakaiyang.xradiogroup.lib.items;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import com.jiakaiyang.xradiogroup.lib.R;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
 import com.jiakaiyang.xradiogroup.lib.utils.LogUtils;
 
 /**
- * Created by jia on 2017/9/8.
- * <p>
- * The LinearLayout implement of XRadioItem
+ * Created by jia on 2017/9/9.
+ * The RelativeLayout implement of XRadioItem
  */
 
-public class XLinearRadioItem extends LinearLayout implements XRadioItem {
-    private static final String TAG = "XLinearRadioItem";
+public class XRelativeRadioItem extends RelativeLayout implements XRadioItem {
+    private static final String TAG = "XRelativeRadioItem";
 
     private XRadioItemImpl xRadioItem;
 
-    public XLinearRadioItem(Context context) {
+    public XRelativeRadioItem(Context context) {
         this(context, null, 0);
-        LogUtils.d(TAG, toString() + ":, constructor1 call");
     }
 
-    public XLinearRadioItem(Context context, @Nullable AttributeSet attrs) {
+    public XRelativeRadioItem(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-        LogUtils.d(TAG, toString() + ":, constructor2 call");
     }
 
-    public XLinearRadioItem(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public XRelativeRadioItem(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        LogUtils.d(TAG, toString() + ":, constructor3 call");
         init(context, attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public XLinearRadioItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public XRelativeRadioItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        LogUtils.d(TAG, toString() + ":, constructor4 call");
-        init(context, attrs, defStyleAttr);
     }
 
     private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

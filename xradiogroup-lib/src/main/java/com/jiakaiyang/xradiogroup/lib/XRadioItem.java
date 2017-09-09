@@ -11,6 +11,19 @@ import android.widget.Checkable;
 
 public interface XRadioItem extends Checkable {
 
+    public static final int[] CHECKED_FIXED_STATE_SET = {
+            android.R.attr.state_checked,
+            R.attr.state_fixed
+    };
+
+    public static final int[] CHECKED_STATE_SET = {
+            android.R.attr.state_checked
+    };
+
+    public static final int[] FIXED_STATE_SET = {
+            R.attr.state_fixed
+    };
+
     /**
      * Set the item's state(Fixed or not)
      * <p>
