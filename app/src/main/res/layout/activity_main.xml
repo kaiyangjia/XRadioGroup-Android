@@ -17,6 +17,28 @@
             android:background="@drawable/bg_item"
             android:clickable="true"
             android:orientation="horizontal"
+            xradio:fixed="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="George Martin (fixed) "
+                android:textColor="@android:color/white" />
+
+        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
+
+        <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_item"
+            android:clickable="true"
+            android:orientation="horizontal"
             xradio:checked="true">
 
             <ImageView

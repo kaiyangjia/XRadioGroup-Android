@@ -177,6 +177,11 @@ public class XRadioGroupImpl implements XRadioGroup {
             int id = xRadioItem.getId();
             LogUtils.d(TAG, "ItemCheckChangeListener onCheckedChanged: id: " + id + ", isChecked: " + isChecked);
 
+            // the fixed item will not change other state
+            if (xRadioItem.isFixed()) {
+                return;
+            }
+
 /*            if (mCheckedId != -1) {
                 setCheckedStateForView(mCheckedId, false);
             }*/
@@ -194,7 +199,14 @@ public class XRadioGroupImpl implements XRadioGroup {
                         continue;
                     }
 
-                    child.setChecked(false);
+                    // the fixed item will not change
+                    if (child.isFixed()) {
+                        continue;
+                    }
+
+                    if (child.isChecked()) {
+                        child.setChecked(false);
+                    }
                 }
 
                 setCheckedId(id);
