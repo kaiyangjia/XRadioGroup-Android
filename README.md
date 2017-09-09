@@ -1,3 +1,8 @@
+XRadioGroup-Android
+=====
+
+[![Build Status](https://travis-ci.org/kaiyangjia/XRadioGroup-Android.svg?branch=master)](https://travis-ci.org/kaiyangjia/XRadioGroup-Android)
+
 ### What is XRadioGroup-Android?
 This is a Ultra RadioGroup for Android.That mean you can do something awesome
 The AOSP RadioGroup can't. For example, you can check layout in XRadioGroup.
