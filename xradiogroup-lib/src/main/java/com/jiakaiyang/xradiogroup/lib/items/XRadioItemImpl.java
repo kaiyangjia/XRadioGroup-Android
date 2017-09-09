@@ -87,6 +87,16 @@ public abstract class XRadioItemImpl implements XRadioItem {
 
     @Override
     public void toggle() {
-        setChecked(!checked);
+        if (isFixed()) {
+            // the fixed item will always can change itself state when toggle
+            setChecked(!isChecked());
+        } else {
+
+            // the not fixed item, when it is checked, the toggle method will not
+            // change its state
+            if (!isChecked()) {
+                setChecked(!isChecked());
+            }
+        }
     }
 }

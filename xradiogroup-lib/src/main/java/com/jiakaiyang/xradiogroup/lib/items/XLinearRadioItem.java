@@ -21,6 +21,11 @@ import com.jiakaiyang.xradiogroup.lib.utils.LogUtils;
 public class XLinearRadioItem extends LinearLayout implements XRadioItem {
     private static final String TAG = "XLinearRadioItem";
 
+    private static final int[] CHECKED_FIXED_STATE_SET = {
+            android.R.attr.state_checked,
+            R.attr.state_fixed
+    };
+
     private static final int[] CHECKED_STATE_SET = {
             android.R.attr.state_checked
     };
@@ -95,6 +100,10 @@ public class XLinearRadioItem extends LinearLayout implements XRadioItem {
 
     @Override
     public boolean isFixed() {
+        // this method maybe called before constructor, this mean xRadioItem maybe null.
+        if (xRadioItem == null) {
+            return false;
+        }
         return xRadioItem.isFixed();
     }
 
@@ -119,6 +128,6 @@ public class XLinearRadioItem extends LinearLayout implements XRadioItem {
 
     @Override
     public void toggle() {
-        setChecked(!xRadioItem.isChecked());
+        xRadioItem.toggle();
     }
 }
