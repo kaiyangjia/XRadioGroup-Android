@@ -1,46 +1,36 @@
 package com.jiakaiyang.xradiogroup.lib.items;
 
 import android.content.Context;
-import android.os.Build;
+import android.support.annotation.AttrRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
 import com.jiakaiyang.xradiogroup.lib.utils.LogUtils;
 
 /**
- * Created by jia on 2017/9/8.
+ * Created by jia on 2017/9/9.
  * <p>
- * The LinearLayout implement of XRadioItem
+ * The FrameLayout implement of XRadioItem
  */
 
-public class XLinearRadioItem extends LinearLayout implements XRadioItem {
-    private static final String TAG = "XLinearRadioItem";
+public class XFrameRadioItem extends FrameLayout implements XRadioItem {
+    private static final String TAG = "XFrameRadioItem";
 
     private XRadioItemImpl xRadioItem;
 
-    public XLinearRadioItem(Context context) {
+    public XFrameRadioItem(@NonNull Context context) {
         this(context, null, 0);
-        LogUtils.d(TAG, toString() + ":, constructor1 call");
     }
 
-    public XLinearRadioItem(Context context, @Nullable AttributeSet attrs) {
+    public XFrameRadioItem(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
-        LogUtils.d(TAG, toString() + ":, constructor2 call");
     }
 
-    public XLinearRadioItem(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public XFrameRadioItem(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        LogUtils.d(TAG, toString() + ":, constructor3 call");
-        init(context, attrs, defStyleAttr);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public XLinearRadioItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        LogUtils.d(TAG, toString() + ":, constructor4 call");
         init(context, attrs, defStyleAttr);
     }
 
@@ -107,4 +97,5 @@ public class XLinearRadioItem extends LinearLayout implements XRadioItem {
     public void toggle() {
         xRadioItem.toggle();
     }
+
 }
