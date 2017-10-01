@@ -33,12 +33,6 @@ dependencies {
 }
 
 // to publish
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-def bintrayLocalUser = properties.getProperty('bintrayUser')
-def bintrayLocalKey = properties.getProperty('bintrayKey')
-
 publish {
     userOrg = 'jiakaiyang'
     repoName = 'android'
@@ -46,7 +40,4 @@ publish {
     artifactId = 'xradiogroup-android'
     publishVersion = 'v0.9'
     website = 'https://github.com/kaiyangjia/XRadioGroup-Android'
-
-    bintrayUser = bintrayLocalUser
-    bintrayKey = bintrayLocalKey
 }
