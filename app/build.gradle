@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.jiakaiyang.xradiogroup"
+        applicationId "com.jiakaiyang.xradiogroup.example"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
@@ -26,5 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.+'
     testCompile 'junit:junit:4.12'
-    compile project(':xradiogroup-lib')
+
+    compile 'com.jiakaiyang:xradiogroup-android:v0.9'
 }
