@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.jiakaiyang.xradiogroup.lib.items.XRelativeRadioItem
+        <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_item"
@@ -34,7 +34,7 @@
                 android:text="George Martin (fixed) "
                 android:textColor="@android:color/white" />
 
-        </com.jiakaiyang.xradiogroup.lib.items.XRelativeRadioItem>
+        </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
 
         <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem
             android:layout_width="match_parent"
