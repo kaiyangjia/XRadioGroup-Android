@@ -29,8 +29,34 @@ Yes.
 
 
 ### How to use it?
+1. add dependencies in your gradle
 
-1. XLinearRadioGroup and XLinearRadioItem is the LinearLayout implement for
+in your project build.gradle
+
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        
+        // this is xradiogroup remote repo
+        maven {
+            url 'https://dl.bintray.com/jiakaiyang/android'
+        }
+    }
+}
+```
+
+
+in your app build.gradle
+```groovy
+dependencies {
+    // add xradiogroup to your app
+    compile 'com.jiakaiyang:xradiogroup-android:v0.9'
+}
+```
+
+
+2. XLinearRadioGroup and XLinearRadioItem is the LinearLayout implement for
 XRadioGroup and XRadioItem. You can use it in your project.
 
 
