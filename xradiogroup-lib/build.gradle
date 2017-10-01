@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'com.novoda.bintray-release'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -28,4 +30,23 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.+'
     testCompile 'junit:junit:4.12'
+}
+
+// to publish
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def bintrayLocalUser = properties.getProperty('bintrayUser')
+def bintrayLocalKey = properties.getProperty('bintrayKey')
+
+publish {
+    userOrg = 'jiakaiyang'
+    repoName = 'android'
+    groupId = 'com.jiakaiyang'
+    artifactId = 'xradiogroup-android'
+    publishVersion = 'v0.9'
+    website = 'https://github.com/kaiyangjia/XRadioGroup-Android'
+
+    bintrayUser = bintrayLocalUser
+    bintrayKey = bintrayLocalKey
 }
