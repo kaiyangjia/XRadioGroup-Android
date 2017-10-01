@@ -12,6 +12,22 @@ The AOSP RadioGroup can't. For example, you can check layout in XRadioGroup.
 2. Set some item state "fixed". The "fixed" items will stay their state until be clicked.
 3. Something other you want, you can open issue let me know.
 
+
+### Is there some screenshot for example?
+Yes.
+
+[![Paul checked](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)
+
+
+[![John checked](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094503.png)
+
+
+[![John checked and Martin fixed](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094520.png)
+
+
+[![Paul checked and Martin fixed](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094532.png)
+
+
 ### How to use it?
 
 1. XLinearRadioGroup and XLinearRadioItem is the LinearLayout implement for
