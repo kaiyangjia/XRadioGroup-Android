@@ -16,17 +16,7 @@ The AOSP RadioGroup can't. For example, you can check layout in XRadioGroup.
 ### Is there some screenshot for example?
 Yes.
 
-[![Paul checked](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)
-
-
-[![John checked](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094503.png)
-
-
-[![John checked and Martin fixed](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094520.png)
-
-
-[![Paul checked and Martin fixed](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094433.png)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/device-2017-10-01-094532.png)
-
+[![Screenshot](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/screenshot_merge.jpg)](https://raw.githubusercontent.com/kaiyangjia/XRadioGroup-Android/master/screenshot/screenshot_merge.jpg)
 
 ### How to use it?
 1. add dependencies in your gradle
