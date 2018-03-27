@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="XLinearRadioItem">
+    <declare-styleable name="XRadioItem">
         <attr name="checked" format="boolean" />
         <attr name="fixed" format="boolean" />
+        <attr name="sync_children_check_state" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="XRadioItemStates">

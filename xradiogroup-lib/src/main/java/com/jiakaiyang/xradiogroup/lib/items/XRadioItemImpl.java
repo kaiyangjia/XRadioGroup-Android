@@ -2,11 +2,14 @@ package com.jiakaiyang.xradiogroup.lib.items;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SoundEffectConstants;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.jiakaiyang.xradiogroup.lib.R;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
@@ -17,11 +20,14 @@ import com.jiakaiyang.xradiogroup.lib.XRadioItem;
  */
 
 public abstract class XRadioItemImpl implements XRadioItem {
+    private static final String TAG = "XRadioItemImpl";
+
     // the real View implement of the XRadioItem
     private View mView;
 
     private boolean fixed;
     private boolean checked;
+    private boolean syncChildrenCheckState;
 
     private XRadioItem.OnCheckedChangeListener onCheckedChangeListener;
 
@@ -73,9 +79,10 @@ public abstract class XRadioItemImpl implements XRadioItem {
 
     public void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(
-                attrs, R.styleable.XLinearRadioItem, defStyleAttr, 0);
-        setFixed(a.getBoolean(R.styleable.XLinearRadioItem_fixed, false));
-        setChecked(a.getBoolean(R.styleable.XLinearRadioItem_checked, false));
+                attrs, R.styleable.XRadioItem, defStyleAttr, 0);
+        setFixed(a.getBoolean(R.styleable.XRadioItem_fixed, false));
+        setChecked(a.getBoolean(R.styleable.XRadioItem_checked, false));
+        setSyncChildrenCheckState(a.getBoolean(R.styleable.XRadioItem_sync_children_check_state, true));
 
         a.recycle();
     }
@@ -123,5 +130,46 @@ public abstract class XRadioItemImpl implements XRadioItem {
                 setChecked(!isChecked());
             }
         }
+    }
+
+    @Override
+    public boolean isSyncChildrenCheckState() {
+        return syncChildrenCheckState;
+    }
+
+    @Override
+    public void setSyncChildrenCheckState(boolean syncChildrenCheckState) {
+        this.syncChildrenCheckState = syncChildrenCheckState;
+    }
+
+    @Override
+    public void syncChildrenCheckState() {
+        if (!(mView instanceof ViewGroup)) {
+            // if this item is just A View, return
+            return;
+        }
+
+        ViewGroup viewGroup = (ViewGroup) mView;
+
+        int count = viewGroup.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = viewGroup.getChildAt(i);
+            applyCheckStateForView(child);
+        }
+    }
+
+
+    private void applyCheckStateForView(View view) {
+        Drawable backgroundDrawable = view.getBackground();
+        if (backgroundDrawable == null) {
+            return;
+        }
+
+        if (!(backgroundDrawable instanceof StateListDrawable)) {
+            Log.d(TAG, "applyCheckStateForView: backgroundDrawable is not instance of StateListDrawable");
+            return;
+        }
+
+        StateListDrawable stateListDrawable = (StateListDrawable) backgroundDrawable;
     }
 }

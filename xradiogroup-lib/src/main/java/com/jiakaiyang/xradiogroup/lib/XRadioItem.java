@@ -42,6 +42,13 @@ public interface XRadioItem extends Checkable {
     public boolean isFixed();
 
 
+    public boolean isSyncChildrenCheckState();
+
+    public void setSyncChildrenCheckState(boolean syncChildrenCheckState);
+
+
+    public void syncChildrenCheckState();
+
     /**
      * just like View.getId().
      *

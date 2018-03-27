@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
@@ -101,6 +102,28 @@ public class XLinearRadioItem extends LinearLayout implements XRadioItem {
             return false;
         }
         return xRadioItem.isChecked();
+    }
+
+    public boolean isSyncChildrenCheckState() {
+        return xRadioItem.isSyncChildrenCheckState();
+    }
+
+    public void setSyncChildrenCheckState(boolean syncChildrenCheckState) {
+        xRadioItem.setSyncChildrenCheckState(syncChildrenCheckState);
+    }
+
+    @Override
+    public void syncChildrenCheckState() {
+        xRadioItem.syncChildrenCheckState();
+    }
+
+    @Override
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+        Log.i(TAG, "drawableStateChanged: called");
+        if (isSyncChildrenCheckState()) {
+            syncChildrenCheckState();
+        }
     }
 
     @Override

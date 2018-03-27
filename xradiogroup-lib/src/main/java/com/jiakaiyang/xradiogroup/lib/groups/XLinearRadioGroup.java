@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -100,6 +101,11 @@ public class XLinearRadioGroup extends LinearLayout implements XRadioGroup {
     @Override
     public void onViewFinishInflate() {
         xRadioGroup.onViewFinishInflate();
+    }
+
+    @Override
+    public void setOnHierarchyChangeListener(OnHierarchyChangeListener listener) {
+        super.setOnHierarchyChangeListener(listener);
     }
 
     /**

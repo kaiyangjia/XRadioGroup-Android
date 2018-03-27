@@ -31,6 +31,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item"
                 android:text="George Martin (fixed) "
                 android:textColor="@android:color/white" />
 
@@ -53,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item"
                 android:text="John Lennon"
                 android:textColor="@android:color/white" />
 
@@ -74,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item"
                 android:text="Paul McCartney"
                 android:textColor="@android:color/white" />
 
@@ -95,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item"
                 android:text="George Harrison"
                 android:textColor="@android:color/white" />
 
@@ -116,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_item"
                 android:text="Ringo Starr"
                 android:textColor="@android:color/white" />
 

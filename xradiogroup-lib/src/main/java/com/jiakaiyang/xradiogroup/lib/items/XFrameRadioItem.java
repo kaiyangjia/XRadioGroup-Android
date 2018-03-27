@@ -5,6 +5,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
@@ -73,6 +74,14 @@ public class XFrameRadioItem extends FrameLayout implements XRadioItem {
         return xRadioItem.isFixed();
     }
 
+    public boolean isSyncChildrenCheckState() {
+        return xRadioItem.isSyncChildrenCheckState();
+    }
+
+    public void setSyncChildrenCheckState(boolean syncChildrenCheckState) {
+        xRadioItem.setSyncChildrenCheckState(syncChildrenCheckState);
+    }
+
     @Override
     public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
         xRadioItem.setOnCheckedChangeListener(listener);
@@ -94,8 +103,21 @@ public class XFrameRadioItem extends FrameLayout implements XRadioItem {
     }
 
     @Override
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+        Log.i(TAG, "drawableStateChanged: called");
+        if (isSyncChildrenCheckState()) {
+            syncChildrenCheckState();
+        }
+    }
+
+    @Override
+    public void syncChildrenCheckState() {
+        xRadioItem.syncChildrenCheckState();
+    }
+
+    @Override
     public void toggle() {
         xRadioItem.toggle();
     }
-
 }

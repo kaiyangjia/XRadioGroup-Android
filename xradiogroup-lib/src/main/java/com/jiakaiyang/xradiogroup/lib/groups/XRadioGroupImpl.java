@@ -232,7 +232,8 @@ public class XRadioGroupImpl implements XRadioGroup {
                     id = ViewUtils.generateViewId();
                     child.setId(id);
                 }
-                ((XRadioItem) child).setOnCheckedChangeListener(childCheckChangeListener);
+                XRadioItem xRadioItem = ((XRadioItem) child);
+                xRadioItem.setOnCheckedChangeListener(childCheckChangeListener);
             }
 
             if (mOnHierarchyChangeListener != null) {

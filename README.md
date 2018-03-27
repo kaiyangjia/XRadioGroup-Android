@@ -188,6 +188,7 @@ class YourXRadioItem implements XRadioItem {
 
 - [ ] Add FrameLayout and other layout implements for XRadioGroup.
 - [ ] Add child view of item stated drawable, the state of the child view will be same to the Item.
+- [ ] Add Checkable implements for some View.
 
 
 
