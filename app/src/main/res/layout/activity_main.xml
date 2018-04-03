@@ -58,6 +58,11 @@
                 android:text="John Lennon"
                 android:textColor="@android:color/white" />
 
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
         </com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem>
 
         <com.jiakaiyang.xradiogroup.lib.items.XLinearRadioItem

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Checkable;
 
 import com.jiakaiyang.xradiogroup.lib.R;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
@@ -105,7 +106,10 @@ public abstract class XRadioItemImpl implements XRadioItem {
     @Override
     public void setChecked(boolean checked) {
         this.checked = checked;
+
         mView.refreshDrawableState();
+
+        onSetChildrenState();
 
         if (onCheckedChangeListener != null) {
             onCheckedChangeListener.onCheckedChanged(this, checked);
@@ -155,6 +159,28 @@ public abstract class XRadioItemImpl implements XRadioItem {
         for (int i = 0; i < count; i++) {
             View child = viewGroup.getChildAt(i);
             applyCheckStateForView(child);
+        }
+    }
+
+
+    /**
+     * set child view state
+     */
+    protected void onSetChildrenState() {
+        if (!(mView instanceof ViewGroup)) {
+            return;
+        }
+
+        ViewGroup mViewGroup = (ViewGroup) mView;
+
+        int childCount = mViewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = mViewGroup.getChildAt(i);
+
+            if (child instanceof Checkable) {
+                Checkable radioItem = (Checkable) child;
+                radioItem.setChecked(checked);
+            }
         }
     }
 
