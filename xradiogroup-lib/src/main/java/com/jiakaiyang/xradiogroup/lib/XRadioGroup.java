@@ -64,6 +64,6 @@ public interface XRadioGroup {
     /* the public interface */
 
     public static interface OnCheckedChangeListener {
-        public void onCheckedChanged(XRadioGroup group, @IdRes int checkedId);
+        public void onCheckedChanged(XRadioGroup group, @IdRes int checkedId, int childIndex);
     }
 }

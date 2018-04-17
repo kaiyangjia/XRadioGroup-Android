@@ -38,6 +38,6 @@ publish {
     repoName = 'android'
     groupId = 'com.jiakaiyang'
     artifactId = 'xradiogroup-android'
-    publishVersion = 'v1.0'
+    publishVersion = 'v1.2'
     website = 'https://github.com/kaiyangjia/XRadioGroup-Android'
 }

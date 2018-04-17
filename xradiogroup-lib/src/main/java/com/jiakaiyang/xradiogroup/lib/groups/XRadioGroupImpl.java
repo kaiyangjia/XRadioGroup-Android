@@ -53,7 +53,7 @@ public class XRadioGroupImpl implements XRadioGroup {
         // checks the appropriate radio button as requested in the XML file
         if (mCheckedId != -1) {
             setCheckedStateForView(mCheckedId, true);
-            setCheckedId(mCheckedId);
+            setCheckedId(mCheckedId, -3);
         }
     }
 
@@ -90,7 +90,8 @@ public class XRadioGroupImpl implements XRadioGroup {
             setCheckedStateForView(checkId, true);
         }
 
-        setCheckedId(checkId);
+        int index = findChildIndex((View) xRadioItem, mViewGroup);
+        setCheckedId(checkId, index);
     }
 
     /**
@@ -155,10 +156,10 @@ public class XRadioGroupImpl implements XRadioGroup {
     }
 
     /* private methods */
-    private void setCheckedId(@IdRes int id) {
+    private void setCheckedId(@IdRes int id, int childIndex) {
         mCheckedId = id;
         if (mOnCheckedChangeListener != null) {
-            mOnCheckedChangeListener.onCheckedChanged(this, mCheckedId);
+            mOnCheckedChangeListener.onCheckedChanged(this, mCheckedId, childIndex);
         }
     }
 
@@ -209,9 +210,28 @@ public class XRadioGroupImpl implements XRadioGroup {
                     }
                 }
 
-                setCheckedId(id);
+                int index = findChildIndex((View) xRadioItem, mViewGroup);
+                setCheckedId(id, index);
             }
         }
+    }
+
+    private int findChildIndex(View child, ViewGroup viewGroup) {
+        if (child == null
+                || viewGroup == null) {
+            return -1;
+        }
+
+        int count = viewGroup.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = viewGroup.getChildAt(i);
+
+            if (child.equals(view)) {
+                return i;
+            }
+        }
+
+        return -2;
     }
 
     /**

@@ -123,6 +123,7 @@ public abstract class XRadioItemImpl implements XRadioItem {
 
     @Override
     public void toggle() {
+/*
         if (isFixed()) {
             // the fixed item will always can change itself state when toggle
             setChecked(!isChecked());
@@ -134,6 +135,10 @@ public abstract class XRadioItemImpl implements XRadioItem {
                 setChecked(!isChecked());
             }
         }
+*/
+
+        // TODO: 2018/4/17 add fixed item handle
+        setChecked(!isChecked());
     }
 
     @Override
