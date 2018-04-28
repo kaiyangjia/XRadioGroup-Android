@@ -7,7 +7,14 @@
     android:orientation="vertical"
     tools:context="com.jiakaiyang.xradiogroup.MainActivity">
 
+    <Button
+        android:text="clearCheck"
+        android:onClick="clearCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.jiakaiyang.xradiogroup.lib.groups.XLinearRadioGroup
+        android:id="@+id/mGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

@@ -4,9 +4,11 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Checkable;
 
 import com.jiakaiyang.xradiogroup.lib.XRadioGroup;
 import com.jiakaiyang.xradiogroup.lib.XRadioItem;
+import com.jiakaiyang.xradiogroup.lib.items.XRadioItemImpl;
 import com.jiakaiyang.xradiogroup.lib.utils.LogUtils;
 import com.jiakaiyang.xradiogroup.lib.utils.ViewUtils;
 
@@ -90,7 +92,12 @@ public class XRadioGroupImpl implements XRadioGroup {
             setCheckedStateForView(checkId, true);
         }
 
-        int index = findChildIndex((View) xRadioItem, mViewGroup);
+        int index;
+        if (xRadioItem instanceof View) {
+            index = findChildIndex((View) xRadioItem, mViewGroup);
+        } else {
+            index = findChildIndex(((XRadioItemImpl) xRadioItem).getView(), mViewGroup);
+        }
         setCheckedId(checkId, index);
     }
 
@@ -113,7 +120,28 @@ public class XRadioGroupImpl implements XRadioGroup {
      * @see #getCheckedRadioButtonId()
      */
     public void clearCheck() {
-        check(-1);
+        mCheckedId = -1;
+
+        int count = mViewGroup.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = mViewGroup.getChildAt(i);
+
+            if (!(child instanceof Checkable)) {
+                continue;
+            }
+            Checkable checkable = (Checkable) child;
+            boolean currentState = checkable.isChecked();
+
+            setCheckedStateForView(child, false);
+            if (currentState
+                    && mOnCheckedChangeListener != null) {
+
+                int index = findChildIndex(child, mViewGroup);
+                mOnCheckedChangeListener.onCheckedChanged(this
+                        , child.getId()
+                        , index);
+            }
+        }
     }
 
     public void setOnCheckedChangeListener(OnCheckedChangeListener mOnCheckedChangeListener) {
@@ -150,6 +178,14 @@ public class XRadioGroupImpl implements XRadioGroup {
         return fixedItems;
     }
 
+    private View getItemView(XRadioItem item) {
+        if (item instanceof View) {
+            return (View) item;
+        } else {
+            return ((XRadioItemImpl) item).getView();
+        }
+    }
+
     @Override
     public void setOnHierarchyChangeListener(ViewGroup.OnHierarchyChangeListener listener) {
         this.hierarchyChangeListener.mOnHierarchyChangeListener = listener;
@@ -165,6 +201,11 @@ public class XRadioGroupImpl implements XRadioGroup {
 
     private void setCheckedStateForView(int viewId, boolean checked) {
         View checkedView = mViewGroup.findViewById(viewId);
+        setCheckedStateForView(checkedView, checked);
+    }
+
+
+    private void setCheckedStateForView(View checkedView, boolean checked) {
         if (checkedView != null && checkedView instanceof XRadioItem) {
             ((XRadioItem) checkedView).setChecked(checked);
         }
@@ -210,7 +251,7 @@ public class XRadioGroupImpl implements XRadioGroup {
                     }
                 }
 
-                int index = findChildIndex((View) xRadioItem, mViewGroup);
+                int index = findChildIndex(getItemView(xRadioItem), mViewGroup);
                 setCheckedId(id, index);
             }
         }

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+./gradlew clean build bintrayUpload -PbintrayUser=kaiyangjia -PbintrayKey=8a9ecbecdfc0a2ffc842655fcc701dcd25bec363 -PdryRun=false

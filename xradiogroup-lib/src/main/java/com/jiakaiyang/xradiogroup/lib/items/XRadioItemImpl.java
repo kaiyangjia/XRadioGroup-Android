@@ -168,6 +168,10 @@ public abstract class XRadioItemImpl implements XRadioItem {
     }
 
 
+    public View getView() {
+        return mView;
+    }
+
     /**
      * set child view state
      */
